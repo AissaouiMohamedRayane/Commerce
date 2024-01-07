@@ -21,3 +21,8 @@ button{
     padding: 5px 25px;
     border-radius: 7px;
 }
+.watch_list{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}

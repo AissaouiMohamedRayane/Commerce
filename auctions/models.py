@@ -3,12 +3,16 @@ from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
 from django.db import models
 
-# class Category(models.Model)
+class Category(models.Model):
+    category=models.CharField(max_length=50)
+    def __str__(self):
+        return f"{self.category}"
+
 
 class Auction(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE, default='1', related_name='auctions')
     name=models.CharField(max_length=50)
-    category=models.CharField(max_length=50, blank=True)
+    category=models.ForeignKey(Category, on_delete=models.CASCADE, related_name='auctions')
     price=models.FloatField(validators=[MinValueValidator(0.01)])
     def __str__(self):
         return f"{self.pk} {self.name} ${self.price}"

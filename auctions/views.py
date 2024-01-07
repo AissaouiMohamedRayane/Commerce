@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import Auction, Bids
+from .models import *
 
 from django.contrib.auth.models import User
 
@@ -75,16 +75,16 @@ def create_listing(request):
     if request.method=="POST":
         user=request.user
         name=request.POST["name"]
-        category=request.POST["category"]
+        category=Category.objects.get(category=request.POST["category"])
         price=request.POST["price"]
         auction=Auction(user=user, name=name, category=category, price=price)
         auction.save()
         return HttpResponseRedirect(reverse("auctions:index"))
-    with open('C:/Users/OMEN 16/Desktop/django/commerce/auctions/text/category.txt', 'r') as lines:
-        category=[line.strip() for line in lines.readlines()]
-        return render(request, 'auctions/create_listing.html',{
-            "category":category
-        })
+    categories=Category.objects.all()
+    categories=categories.order_by('category')
+    return render(request, 'auctions/create_listing.html',{
+        "category":categories
+    })
 
 def bid(request, auction_name, auction_id):
     if not request.user.is_authenticated:
