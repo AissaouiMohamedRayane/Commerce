@@ -1,0 +1,23 @@
+body {
+    padding: 10px;
+}
+
+.flex{
+    display: flex;
+    border: solid 1px rgb(206, 201, 201);
+    border-radius: 7px;
+    margin: 15px 0px;
+}
+.image{
+    margin: 0px 100px;
+}
+.description{
+    margin-bottom: 1%;
+}
+button{
+    background-color: rgb(28, 119, 255);
+    color: white;
+    border: none;
+    padding: 5px 25px;
+    border-radius: 7px;
+}

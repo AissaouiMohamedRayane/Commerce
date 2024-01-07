@@ -1,0 +1,16 @@
+{% extends "./layout.html" %}
+
+{% block body %}
+<h1>Place bid</h1>
+<form action="{% url 'auctions:bid' auction_name auction_id %}" method="POST">
+    {% csrf_token %}
+    <input type="number" placeholder="bid" step="any" min={{auction.price}} name="bid">
+    <input type="submit">
+</form><br>
+{% if existing_bids %}
+  <h1>bids</h1>
+  {% for bid in existing_bids %}
+    <li>{{bid}}</li>
+  {% endfor %}
+{% endif %}
+{% endblock body %}

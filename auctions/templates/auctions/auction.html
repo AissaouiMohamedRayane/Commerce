@@ -1,0 +1,27 @@
+{% extends "./layout.html" %}
+
+{% block body %}
+<div class="watch">
+    <h1>Listing: {{auction.name}}</h1>
+    <br><br><br><br><br></b>
+    image
+    <br><br><br><br><br></b>
+    <p>Some text</p>
+    <h2>${{auction.price|floatformat:2}}</h2>
+    {% if message %}
+      <h1>{{message}}</h1>
+    {% endif %}
+    <a href="{% url 'auctions:bid' auction.name auction.id %}"><button>Bids</button></a><br><br>
+    <h2>Details</h2>
+</div>
+<ul>
+    <li>Listed by: {{user.username}}</li>
+    <li>Category: 
+      {% if auction.category %}
+        {{auction.category}}
+        {% else %}
+        No category
+      {% endif %}
+    </li>
+</ul>
+{% endblock body %}

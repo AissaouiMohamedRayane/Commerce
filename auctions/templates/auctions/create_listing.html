@@ -1,0 +1,15 @@
+{% extends "./layout.html" %}
+{% block body %}
+<h1>Create listings</h1>
+<form action="{% url 'auctions:create_listing' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="*name" required>
+    <select name="category" id="">
+        {% for option in category %}
+          <option value="option">{{option}}</option>
+        {% endfor %}
+    </select>
+    <input type="number" step="any" min="0" name="price" placeholder="*price">
+    <input type="submit">
+</form>
+{% endblock body %}

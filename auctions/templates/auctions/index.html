@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <ul>
+        {% for auction in auctions %}
+        <div class="flex">
+          <div class="image">
+            image
+          </div>
+          <div class="description">
+            <h3>{{auction.name}}</h3>
+            <h5>Price: ${{auction.price|floatformat:2}}</h5>
+            <a href="{% url 'auctions:auction' auction.name auction.id %}"><button>See</button></a>
+          </div>
+        </div>
+        {% empty %}
+
+        <h3>No auctions</h3>
+        {% endfor %}
+    </ul>
+{% endblock %}
