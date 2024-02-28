@@ -77,7 +77,8 @@ def create_listing(request):
         name=request.POST["name"]
         category=Category.objects.get(category=request.POST["category"])
         price=request.POST["price"]
-        auction=Auction(user=user, name=name, category=category, price=price)
+        image=request.POST["image"]
+        auction=Auction(user=user, name=name, category=category, price=price, image=image)
         auction.save()
         return HttpResponseRedirect(reverse("auctions:index"))
     categories=Category.objects.all()
@@ -109,10 +110,7 @@ def bid(request, auction_name, auction_id):
         "auction_id":auction_id,
         "auction":auction,
         "existing_bids":Bids.objects.filter(auction=auction)
-    }
-                  
-                  
-                  )
+    })
 def auction(request, auction_name, auction_id):
     auction=Auction.objects.get(pk=auction_id)
     return render(request, 'auctions/auction.html',{

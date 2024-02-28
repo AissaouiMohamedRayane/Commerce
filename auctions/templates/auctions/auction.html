@@ -2,13 +2,18 @@
 
 {% block body %}
 <div class="watch">
-    <div class="watch_list">
+
       <h1>Listing: {{auction.name}}</h1>
-      <a href=""><button class="button">add to Watchlist</button></a>
-    </div>
-    <br><br><br><br><br></b>
-    image
-    <br><br><br><br><br></b>
+      {% if auction.image %}
+      <img src="{{ auction.image.url }}" alt="{{ auction.name }}">
+    {% else %}
+    <br><br><br><br><br><br>
+
+    <p>No image available</p> 
+
+    <br><br><br><br><br>
+    {% endif %}
+
     <p>Some text</p>
     <h2>${{auction.price|floatformat:2}}</h2>
     {% if message %}

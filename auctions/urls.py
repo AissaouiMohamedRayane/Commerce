@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -12,4 +14,5 @@ urlpatterns = [
     path("Create/", views.create_listing, name="create_listing"),
     path("<str:auction_name><int:auction_id>/bid", views.bid, name="bid"),
     path("<str:auction_name><int:auction_id>", views.auction, name="auction"),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

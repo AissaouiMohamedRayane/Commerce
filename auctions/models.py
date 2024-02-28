@@ -14,6 +14,7 @@ class Auction(models.Model):
     name=models.CharField(max_length=50)
     category=models.ForeignKey(Category, on_delete=models.CASCADE, related_name='auctions')
     price=models.FloatField(validators=[MinValueValidator(0.01)])
+    image=models.ImageField(upload_to='images/', default="C:/Users/OMEN 16/Desktop/django/commerce/auctions/media/images/test.avif")
     def __str__(self):
         return f"{self.pk} {self.name} ${self.price}"
 
